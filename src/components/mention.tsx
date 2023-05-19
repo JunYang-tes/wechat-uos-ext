@@ -1,4 +1,4 @@
-import { SearchList } from '../search-list'
+import { SearchList } from './search-list'
 import pinyin from 'pinyin'
 import { css } from '@emotion/css'
 
