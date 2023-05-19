@@ -1,5 +1,6 @@
 const ids = {
-  'alita': '2cfa'
+  'alita': '2cfa',
+  'vue':'7a23',
 }
 type Modules = keyof typeof ids
 function getModuleId(name: Modules) {

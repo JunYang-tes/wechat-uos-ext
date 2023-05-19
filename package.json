@@ -20,6 +20,7 @@
   "dependencies": {
     "@emotion/css": "^11.10.0",
     "dexie": "^3.2.2",
+    "pinyin": "^3.0.0-alpha.5",
     "solid-js": "^1.4.7",
     "ts-pattern": "^4.0.5"
   }

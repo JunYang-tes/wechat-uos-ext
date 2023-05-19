@@ -4,8 +4,8 @@ const fs = require("fs")
 
 
 addSendHook('SCREENSHOT::START', () => {
-  fs.unlink('/tmp/flameshot.png')
-  exec("flameshot gui -p /tmp/flameshot.png", (err) => {
+  fs.unlink('/tmp/flameshot.png',()=>{})
+  exec("flameshot gui -p /tmp/flameshot.png", (err:any) => {
     if (!err) {
       emit('SCREENSHOT::SAVE_Local_Success',
         null, {
