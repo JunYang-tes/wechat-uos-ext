@@ -24,8 +24,8 @@ function CommandUI() {
                     left: 50%;
                     transform: translateX(-50%);
             `}
-      text={cmd => cmd.label}
-      isMatch={(keyword, cmd) => cmd.label.includes(keyword)}
+      text={cmd => cmd.render?.(cmd) ?? cmd.label}
+      isMatch={(keyword, cmd) => cmd.isMatch?.(keyword) || cmd.label.toLowerCase().includes(keyword.toLowerCase())}
       onCancel={() => {
         setVisible(false)
       }}

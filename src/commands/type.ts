@@ -5,5 +5,6 @@ export type Command = {
   description?: string
   render?: (cmd: Command) => JSX.Element
   data?: unknown
+  isMatch?: (keywords:string)=> boolean
   execute: () => Promise<Command[]> | Command[] | void
 }
