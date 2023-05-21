@@ -10,3 +10,14 @@ export function getOrCreateMountPoint(selector: string, tag: string = 'div') {
   return el
 
 }
+export function moveCaretToEnd(element: HTMLElement | HTMLTextAreaElement) {
+  if ((element as Node).nodeName !== "TEXTAREA" && element.getAttribute("contenteditable") === "true") {
+    element.focus()
+    window.getSelection()?.selectAllChildren(element)
+    window.getSelection()?.collapseToEnd()
+  } else {
+    element.focus();
+    (element as HTMLTextAreaElement).select()
+    window.getSelection()?.collapseToEnd()
+  }
+}

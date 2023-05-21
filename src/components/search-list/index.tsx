@@ -1,6 +1,6 @@
 import { createEffect, createSignal, For, JSX, onCleanup, onMount } from 'solid-js';
 import { match } from 'ts-pattern';
-import { css } from '@emotion/css'
+import {cx, css } from '@emotion/css'
 
 const container = css`
   --border-color: #eee;
@@ -43,6 +43,7 @@ const list = css`
 
 export type SearchListProps<T> = {
   class?: string,
+  listClass?: string
   data: T[]
   text: (item: T) => JSX.Element
   isMatch: (keywords: string, item: T) => boolean
@@ -57,7 +58,7 @@ export const SearchList = <T,>(props: SearchListProps<T>) => {
       .data
       .filter(i => props.isMatch(keywords(), i))
   }
-  const ul = <ul class={list}>
+  const ul = <ul class={cx(list,props.listClass)}>
     <For each={filtered()}>
       {
         (item, index) => {

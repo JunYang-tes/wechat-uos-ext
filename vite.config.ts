@@ -11,12 +11,13 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/lib.ts'),
       name: 'lib',
-      fileName:'lib'
+      fileName: 'lib'
     },
     target: 'esnext',
     minify: false,
+    assetsInlineLimit: 1024 * 1024,
     rollupOptions: {
-      external:['child_process']
+      external: ['child_process']
     }
   },
 });

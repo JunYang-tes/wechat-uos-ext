@@ -8,4 +8,5 @@ import './inject/mention'
 import './inject/paste-img'
 import './commands'
 import './inject/link'
+import './inject/face'
 init()

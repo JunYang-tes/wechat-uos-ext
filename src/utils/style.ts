@@ -1,4 +1,4 @@
-import { css,injectGlobal } from '@emotion/css'
+import { css, injectGlobal } from '@emotion/css'
 injectGlobal`
 :root {
     --BG-1: #fff;
@@ -68,4 +68,12 @@ cursor: pointer;
 border: none;
 outline: none;
 
+`
+export const dialog = css`
+position: absolute;
+background-color: white;
+width: min(500px, 80vw);
+top: 50px;
+left: 50%;
+transform: translateX(-50%);
 `
