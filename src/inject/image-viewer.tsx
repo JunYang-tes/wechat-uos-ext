@@ -22,9 +22,6 @@ document.addEventListener('click', (e) => {
 function Viewer(props: { url: string, onclose: () => void }) {
   const [scale, setScale] = createSignal(1)
   return <div
-    onWheel={e=>{
-      setScale(s=>s*(e.deltaY < 0 ? 1.05 : 0.95))
-    }}
     class={css`
     position: absolute;
     background:black;
@@ -37,6 +34,14 @@ function Viewer(props: { url: string, onclose: () => void }) {
     align-items: center;
     justify-content: center;
     `}>
+    <img src={props.url}
+      onWheel={e => {
+        e.stopPropagation()
+        e.preventDefault()
+        setScale(s => s * (e.deltaY < 0 ? 1.05 : 0.95))
+      }}
+      class={css`transform:scale(${scale()})`}
+    />
     <button onClick={props.onclose}
       class={css`
         all:unset;
@@ -80,8 +85,5 @@ function Viewer(props: { url: string, onclose: () => void }) {
         `}
     >
     </button>
-    <img src={props.url}
-      class={css`transform:scale(${scale()})`}
-    />
   </div>
 }
