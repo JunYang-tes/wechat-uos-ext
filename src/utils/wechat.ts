@@ -21,3 +21,19 @@ export function getContactList() {
       }>
     }>
 }
+
+export function getChatMembers(id: string) {
+  return ipcRenderer.invoke('ChatRoomManager.getChatRoomMemberList', [
+    'ChatRoomManager.getChatRoomMemberList',
+    id
+  ]) as
+    Promise<{
+      chatroomMember: Array<{
+        avatarUrl: string,
+        displayName: string,
+        hdAvatarUrl: string,
+        nickName: string,
+        username: string
+      }>
+    }>
+}

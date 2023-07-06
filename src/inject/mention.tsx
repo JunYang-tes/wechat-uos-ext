@@ -7,7 +7,7 @@ import { proxies } from './hook-points/proxy'
 
 const style = document.createElement('style')
 style.innerHTML=`
-.at-list__container {
+.at-list {
   visibility: hidden;
 }
 `
@@ -25,7 +25,7 @@ addDomAdditionHandler(
             nickName: string,
             displayName: string,
             hdAvatarUrl: string,
-          }> = proxies.groupMembers?.groupMembers?.value ?? []
+          }> = proxies.groupMembers?.groupMembers ?? []
           if (users.length > 0) {
             console.log("SHOW")
             const umount = render(() => <Mention
