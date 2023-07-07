@@ -26,7 +26,9 @@ addDomAdditionHandler(
               reader.addEventListener('load', async (e) => {
                 const data: ArrayBuffer = reader.result as any
                 const unlink = require('fs/promises').unlink
-                await unlink('/tmp/wechat-img')
+                try {
+                  await unlink('/tmp/wechat-img')
+                } catch {}
                 const write = require('fs/promises').writeFile
                 await write('/tmp/wechat-img', new Uint8Array(data))
                 let keydownHandler: (e: KeyboardEvent) => void
