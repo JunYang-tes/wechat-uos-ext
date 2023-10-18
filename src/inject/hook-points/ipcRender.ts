@@ -1,7 +1,7 @@
 import { patch } from '../patch'
 import type Electron from 'electron'
 declare function require(moduleName: string): any
-const ipcRender:Electron.IpcRenderer = require('electron').ipcRenderer
+const ipcRender: Electron.IpcRenderer = require('electron').ipcRenderer
 
 export type StopSend = boolean
 const sendHooks: Record<string, (args: any[]) => StopSend> = {
@@ -11,7 +11,7 @@ const sendHooks: Record<string, (args: any[]) => StopSend> = {
 patch(ipcRender, 'send', ({ args, context, original }) => {
   if (typeof args[0] === 'string') {
     const hook = sendHooks[args[0]]
-    if(hook && hook(args)) {
+    if (hook && hook(args)) {
       return
     }
   }
@@ -25,18 +25,24 @@ export function addSendHook(key: string, hook: (args: any[]) => StopSend) {
 export const emit = ipcRender.emit.bind(ipcRender)
 
 
-const invokeHooks: Record<string, (i:Promise<any>) => Promise<any>> = {}
-patch(ipcRender,'invoke',( { args, context, original }) => {
+type InvokeHook =
+  | ((i: Promise<any>) => Promise<any>)
+  | { kind: 'intercept', func: (param: { args: any[], context: any, original: (...args:any[]) => Promise<any> }) => Promise<any> }
+const invokeHooks: Record<string, InvokeHook> = {}
+patch(ipcRender, 'invoke', ({ args, context, original }) => {
   const [channel] = args
-  if(invokeHooks[channel]) {
+  if (invokeHooks[channel]) {
     const hook = invokeHooks[channel]
-    return hook(original.apply(context, args))
+    if (typeof hook === 'function') {
+      return hook(original.apply(context, args))
+    }
+    return hook.func({ args, context, original })
   }
-  console.log("invoke",channel)
+  console.log("invoke", channel)
   return original.apply(context, args)
 })
 
-export function addInvokeHook(key: string, hook: (i:Promise<any>) => Promise<any>) {
+export function addInvokeHook(key: string, hook: InvokeHook) {
   invokeHooks[key] = hook
 }
 

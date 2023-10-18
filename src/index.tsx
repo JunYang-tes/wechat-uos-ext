@@ -10,4 +10,5 @@ import './commands'
 import './inject/link'
 import './inject/face'
 import './inject/image-viewer'
+import './inject/image-quality'
 init()
