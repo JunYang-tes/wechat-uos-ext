@@ -6,6 +6,9 @@
 <script script src="lib.umd.js"></script>
 ```
 
+## 适用于
+packages/renderer/dist/static/js/ 下含 index.777ea863.js 的uos 版微信
+
 ## hack了啥？
 
 1. 将截图工具替换为了 flameshot
@@ -16,3 +19,4 @@
 6. 消息防撤回
 7. 搜索表情
 8. 搜索成员
+9. 改善发送图片的质量
