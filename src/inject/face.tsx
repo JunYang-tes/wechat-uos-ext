@@ -11,7 +11,7 @@ addDomAdditionHandler(
     if (textContent) {
       textContent.addEventListener('keydown', e => {
         console.log('dd')
-        if (e.key == "/") {
+        if (e.key == "/" && (e.ctrlKey || e.metaKey)) {
           const index = document.getSelection()?.getRangeAt(0)?.startOffset ??
             (textContent.textContent ?? " ").length - 1
           e.stopPropagation()

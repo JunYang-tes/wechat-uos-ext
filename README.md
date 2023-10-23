@@ -17,6 +17,6 @@ packages/renderer/dist/static/js/ 下含 index.777ea863.js 的uos 版微信
 4. 链接用默认浏览器打开
 5. 发送剪切板的图片
 6. 消息防撤回
-7. 搜索表情
+7. 搜索表情 (ctrl + /)
 8. 搜索成员
 9. 改善发送图片的质量

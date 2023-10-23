@@ -1,7 +1,12 @@
 import { render } from 'solid-js/web'
 import { getOrCreateMountPoint } from '../utils/dom'
-import { css } from '@emotion/css'
+import { css, injectGlobal } from '@emotion/css'
 import { createSignal } from 'solid-js'
+injectGlobal`
+.conversation-deatil .titlebar-wrap {
+-webkit-app-region:none;
+}
+`
 document.addEventListener('click', (e) => {
   const el = e.target as HTMLImageElement
   if (el.classList.contains("message-image")) {
