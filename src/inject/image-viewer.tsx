@@ -39,7 +39,12 @@ function Viewer(props: { url: string, onclose: () => void }) {
     align-items: center;
     justify-content: center;
     `}>
-    <img src={props.url}
+    <img 
+      style={{
+        maxWidth:'100vw',
+        maxHeight: '100vw'
+      }}
+      src={props.url}
       onWheel={e => {
         e.stopPropagation()
         e.preventDefault()
